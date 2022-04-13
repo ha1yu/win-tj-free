@@ -13,3 +13,12 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+.idea
+cache
+dist
+
+*log*.txt
+*.log
+
+.DS_Store
