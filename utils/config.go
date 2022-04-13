@@ -19,6 +19,8 @@ type Config struct {
 	Debug         bool
 	Name          string // 当前服务器名称
 	WebServerPort string // 当前服务器主机监听端口号
+	WebUserName   string // 当前服务器主机监听端口号
+	WebUserPasswd string // 当前服务器主机监听端口号
 	ServerVersion string // 当前服务端版本号
 	MessageAesKey string // AES加密密钥,服务端客户端需要一致,服务端为了性能直接写死,客户端不写死,每次计算出来
 }
@@ -49,6 +51,8 @@ func GetConfig() *Config {
 		Debug:         viper.GetBool("Debug"),
 		Name:          viper.GetString("name"),
 		ServerVersion: viper.GetString("ServerVersion"),
+		WebUserName:   viper.GetString("WebUserName"),
+		WebUserPasswd: viper.GetString("WebUserPasswd"),
 		MessageAesKey: viper.GetString("MessageAesKey"),
 	}
 	return config

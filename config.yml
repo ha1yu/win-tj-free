@@ -3,6 +3,8 @@ name: name
 Host: 0.0.0.0
 CcServerPort: 8888
 WebServerPort: 80
+WebUserName: username
+WebUserPasswd: passwd
 ServerVersion: 1.0.0
 MessageAesKey: woshikey
 
