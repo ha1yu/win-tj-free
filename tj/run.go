@@ -11,7 +11,6 @@ import (
 //go:embed f.exe
 var embededFiles embed.FS
 
-// win客户端守护脚本
 var windowsScript = `
 @echo off
 %1 mshta vbscript:CreateObject("WScript.Shell").Run("%~s0 ::",0,FALSE)(window.close)&&exit
