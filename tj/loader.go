@@ -1,11 +1,11 @@
-package main
+package tj
 
 import (
 	"crypto/aes"
 	"crypto/cipher"
 	"encoding/base64"
 	"fmt"
-	"github.com/ha1yu/tingchao-server/utils"
+	"github.com/ha1yu/win-tj-free/utils"
 	"log"
 	"unsafe"
 
