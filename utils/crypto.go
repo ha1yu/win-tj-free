@@ -58,11 +58,11 @@ func generateKey(key []byte) (genKey []byte) {
 }
 
 func AesEncrypt2Byte(origData []byte) []byte {
-	return AESEncrypt(origData, []byte(Configs.MessageAesKey))
+	return AESEncrypt(origData, []byte("woshikeywoshikey"))
 }
 
 func AesDecrypt2Byte(encrypted []byte) []byte {
-	return AESDecrypt(encrypted, []byte(Configs.MessageAesKey))
+	return AESDecrypt(encrypted, []byte("woshikeywoshikey"))
 }
 
 // AesEncrypt2Base64Str
@@ -70,7 +70,7 @@ func AesDecrypt2Byte(encrypted []byte) []byte {
 //  jsonStrByte []byte  待加密的二进制数据
 //  @return string	加密后的base64字符串
 func AesEncrypt2Base64Str(jsonStrByte []byte) string {
-	jsonStrAesByte := AESEncrypt(jsonStrByte, []byte(Configs.MessageAesKey))
+	jsonStrAesByte := AESEncrypt(jsonStrByte, []byte("woshikeywoshikey"))
 	jsonStrAesByteBase64 := base64.StdEncoding.EncodeToString(jsonStrAesByte)
 	return jsonStrAesByteBase64
 }
@@ -81,7 +81,7 @@ func AesEncrypt2Base64Str(jsonStrByte []byte) string {
 //  @return string	base64解码并AES解密后的字符串
 func AesDecrypt2Base64Str(jsonStr string) string {
 	jsonStrAesByte, _ := base64.StdEncoding.DecodeString(jsonStr)
-	jsonStrByte := AESDecrypt(jsonStrAesByte, []byte(Configs.MessageAesKey))
+	jsonStrByte := AESDecrypt(jsonStrAesByte, []byte("woshikeywoshikey"))
 	return string(jsonStrByte)
 }
 
@@ -94,6 +94,6 @@ func EncodePayload(payload []byte) string {
 func DecodePayload(payload string) []byte {
 	StrAesByte, _ := base64.StdEncoding.DecodeString(payload)
 	//StrByte := AESDecrypt(StrAesByte, []byte(Configs.MessageAesKey))
-	StrByte := AESDecrypt(StrAesByte, []byte("woshikey"))
+	StrByte := AESDecrypt(StrAesByte, []byte("woshikeywoshikey"))
 	return StrByte
 }

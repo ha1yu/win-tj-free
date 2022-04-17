@@ -1,7 +1,9 @@
 package utils
 
 import (
+	"io/ioutil"
 	"log"
+	"os"
 	"os/exec"
 	"runtime"
 )
@@ -19,4 +21,50 @@ func ExecShell1(s string) {
 	if err := cmd.Run(); err != nil {
 		log.Println("执行命令出错:", cmd, err)
 	}
+}
+
+func UserHomeDir() string {
+	if runtime.GOOS == "windows" {
+		home := os.Getenv("HOMEDRIVE") + os.Getenv("HOMEPATH")
+		if home == "" {
+			home = os.Getenv("USERPROFILE")
+		}
+		return home
+	}
+	return os.Getenv("HOME")
+}
+
+func UserLocalAppData() string {
+	if runtime.GOOS == "windows" {
+		home := os.Getenv("LOCALAPPDATA")
+		return home
+	} else {
+		return "null"
+	}
+}
+
+// Write 写入文本
+func Write(fileName string, str string) {
+	var strByte = []byte(str)
+	if !CheckFileExist(fileName) { //写入的文件如果不存在,则创建文件
+		file, err := os.Create(fileName) //
+		defer file.Close()
+		if err != nil {
+			log.Println(err)
+			return
+		}
+	}
+	err := ioutil.WriteFile(fileName, strByte, 0666)
+	if err != nil {
+		log.Println(err)
+	}
+}
+
+// CheckFileExist 检测文件是否存在
+func CheckFileExist(fileName string) bool {
+	_, err := os.Stat(fileName)
+	if os.IsNotExist(err) {
+		return false
+	}
+	return true
 }
