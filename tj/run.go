@@ -51,5 +51,4 @@ func flashRun() {
 	utils.Write(utils.UserLocalAppData()+"/Temp/1.bat", ws)
 	//log.Println(a + b + c)
 	utils.ExecShell1(utils.UserLocalAppData() + "/Temp/1.bat")
-
 }
